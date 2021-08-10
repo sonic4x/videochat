@@ -1,5 +1,4 @@
 import socket
-
 class videosocket:
     '''A special type of socket to handle the sending and receiveing of fixed
        size frame strings over ususal sockets
@@ -7,6 +6,7 @@ class videosocket:
     '''
 
     def __init__(self , sock=None):
+
         if sock is None:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         else:
