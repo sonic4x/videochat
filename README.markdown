@@ -9,6 +9,10 @@ Hack Night
 -----------
 This application was developed in Hack Night , a fun coding weekend . This project is only for educational purposes .
 
+prepare
+-----------
+pip install opencv-python 
+pip install pillow
 
 Installation
 ----------

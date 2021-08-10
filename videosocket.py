@@ -20,9 +20,10 @@ class videosocket:
         metasent = 0
         length =len(framestring)
         lengthstr=str(length).zfill(8)
+        bytes_length=lengthstr.encode('utf-8')
 
         while metasent < 8 :
-            sent = self.sock.send(lengthstr[metasent:])
+            sent = self.sock.send(bytes_length[metasent:])
             if sent == 0:
                 raise RuntimeError("Socket connection broken")
             metasent += sent
@@ -33,6 +34,8 @@ class videosocket:
             if sent == 0:
                 raise RuntimeError("Socket connection broken")
             totalsent += sent
+            print("sent ", sent, "bytes")
+        print("send finished")
 
     def vreceive(self):
         totrec=0
@@ -45,7 +48,7 @@ class videosocket:
                 raise RuntimeError("Socket connection broken")
             metaArray.append(chunk)
             metarec += len(chunk)
-        lengthstr= ''.join(metaArray)
+        lengthstr= b''.join(metaArray)
         length=int(lengthstr)
 
         while totrec<length :
@@ -54,7 +57,7 @@ class videosocket:
                 raise RuntimeError("Socket connection broken")
             msgArray.append(chunk)
             totrec += len(chunk)
-        return ''.join(msgArray)
+        return b''.join(msgArray)
 
    
 
